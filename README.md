@@ -11,6 +11,10 @@ The repository is organized into standalone Maven modules, each covering a speci
 - **03-spring-web**: Building RESTful APIs and web applications using Spring MVC.
 - **04-spring-data**: interacting with databases using Spring Data JPA and Hibernate.
 - **05-spring-security**: Securing applications with authentication and authorization.
+- **06-spring-aop**: Aspect-Oriented Programming for cross-cutting concerns like logging.
+- **07-spring-validation**: Validating user input using Bean Validation.
+- **08-spring-testing**: Unit and Integration testing with JUnit and Mockito.
+- **09-spring-actuator**: Production-ready features like health checks and metrics.
 
 ## Prerequisites
 

@@ -15,32 +15,30 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .authorizeHttpRequests((authorize) -> authorize
+                                                .requestMatchers("/public/**").permitAll()
+                                                .anyRequest().authenticated())
+                                .httpBasic(Customizer.withDefaults())
+                                .formLogin(Customizer.withDefaults());
 
-        return http.build();
-    }
+                return http.build();
+        }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
+        @Bean
+        public UserDetailsService userDetailsService() {
+                UserDetails user = User.withUsername("user")
+                                .password("{noop}password")
+                                .roles("USER")
+                                .build();
 
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
-                .build();
+                UserDetails admin = User.withUsername("admin")
+                                .password("{noop}admin")
+                                .roles("ADMIN")
+                                .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+                return new InMemoryUserDetailsManager(user, admin);
+        }
 }
